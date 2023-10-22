@@ -3,6 +3,7 @@ const app = express();
 const mysql = require('mysql');
 const session = require('express-session');
 const port = process.env.PORT || 3000;
+const path = require('path');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
