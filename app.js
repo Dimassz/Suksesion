@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
-
+app.set('view engine', 'ejs');
 app.use(
     session({
       secret: 'my_secret_key',
