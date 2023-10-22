@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUKSESION | Mempermudah Analisis Keuangan Usaha</title>
+    <link rel="stylesheet" href="/css/inventori.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" type="x-icon" href="/image/favicon.png">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"> <a href="/"><img src="/image/v2logo-2.png"></a></div>
+            <div class="username"><p>Welcome <%=userName%></p></div>
+            <div class="list-txt">
+                <a href="/dashboard"><p>Dashboard</p></a>
+              <a href="/inventori"><p>Inventori</p></a>  
+              <a href="/kasir"> <p>Kasir</p></a>  
+              <a href="/transaksi"><p>Transaksi</p></a>  
+            </div>
+            <div class="logout"><p>Log Out</p></div>
+        </div>
+    </header>
+
+    <div class="box">
+        <div class="container">
+            <h1>Daftar Barang</h1>
+            <table>
+                <div>
+                <tr>
+                    <th>Nama Barang</th>
+                    <th>Harga Produksi</th>
+                    <th>Harga Jual</th>
+                    <th>Kategori</th>
+                </tr>
+            </div>
+                
+                <% results.forEach(barang=>{ %>
+                <tr>
+                     <form method="post" action="/updateInventori">
+                    <td><input type="text" name="namaBarang" value="<%=barang.nama%>"></td>
+                    <td><input type="text" name="hargaProduksi" value="<%=barang.harga_produksi%>"></td>
+                    <td><input type="number" name="hargaJual" value="<%=barang.harga_jual%>"></td>
+                    <!-- <td><input type="text" name="kategori" value="<%=barang.kategori%>"></td> -->
+                    <td>
+                        <select name="kategori">
+                        <%if(barang.kategori === "Makanan"){ %>
+                            <option value="Makanan" selected>Makanan</option>
+                            <option value="Minuman">Minuman</option>
+                      <%  }else{ %>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Minuman" selected>Minuman</option>
+                    <%  } %>
+                        </select>
+
+                    </td>
+                    <input type="number" name="id" value="<%=barang.ID%>" style="display: none;">
+                    <input type="submit" style="display: none;">
+                </form>
+                <form method="post" action="/deleteItem">
+                        <input type="number" name="id" style="display: none;" value="<%=barang.ID%>">
+                    <td><button class="delete-button" nama="deleteButton" type="submit">Hapus</button></td>
+                    </form>
+                </tr>
+
+              <%  }) %>
+              <tr>
+                <div class="addItem">
+                    <form method="post" action="/addItem">
+                    <td><input type="text" placeholder="nama" name="nama" required ></td>
+                    <td><input type="number" placeholder="harga produksi" name="hargaProduksi" required></td>
+                    <td><input type="number" placeholder="harga jual" name="hargaJual" required></td>
+                    <td><select name="kategori">
+                        <option value="Makanan">Makanan</option>
+                        <option value="Minuman">Minuman</option>
+                    </select></td>
+                    <td><button>Tambah</button></td>
+                </form>
+                </div>
+              </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

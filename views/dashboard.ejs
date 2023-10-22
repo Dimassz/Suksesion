@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUKSESION | Mempermudah Analisis Keuangan Usaha</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" type="x-icon" href="/image/favicon.png">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"><a href="/"><img src="/image/v2logo-2.png"></a></div> 
+            <div class="username"><p>Welcome <%=userName%></p></div>
+            <div class="list-txt">
+                <a href="/dashboard"><p>Dashboard</p></a>
+              <a href="/inventori"><p>Inventori</p></a>  
+              <a href="/kasir"> <p>Kasir</p></a>  
+              <a href="/transaksi"><p>Transaksi</p></a>  
+            </div>
+            <div class="logout">
+               <a href="/logout"> <p>Log Out</p></a>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="first-container">
+            <div class="date">
+                <p id="real-time-clock"></p>
+            </div>
+            <div class="card-container">
+            <div class="card">
+                <div class="card-text">
+                    <div class="card-main-text">
+                        <p style="font-size: 20px; font-weight: 600;">Laba Bersih</p>
+                        <div class="persen">
+                            <img src="/image/arrow-up.png">
+                            <p style="font-size: 20px; color: #16F275;">2%</p>
+                        </div>
+                    </div>
+                    <div class="card-total">
+                        <% const laba = pendapatan - biaya - pajak %>
+                        <p style="font-size: 30px; text-align: center; font-weight: 400;">Rp<%= laba.toLocaleString() %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-text">
+                    <div class="card-main-text">
+                        <p style="font-size: 20px; font-weight: 600;">Pendapatan</p>
+                        <div class="persen">
+                            <img src="/image/arrow-up.png">
+                            <p style="font-size: 20px; color: #16F275;">2%</p>
+                        </div>
+                    </div>
+                    <div class="card-total">
+                        <p style="font-size: 30px; text-align: center; font-weight: 400;">Rp<%=pendapatan.toLocaleString()%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-text">
+                    <div class="card-main-text">
+                        <p style="font-size: 20px; font-weight: 600;">Biaya</p>
+                        <div class="persen">
+                            <img src="/image/arrow-up.png">
+                            <p style="font-size: 20px; color: #16F275;">2%</p>
+                        </div>
+                    </div>
+                    <div class="card-total">
+                        <p style="font-size: 30px; text-align: center; font-weight: 400;">Rp<%=biaya.toLocaleString()%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+               <div class="card-margin">
+                <div class="margin-text"><p style="font-size: 20px; font-weight: 600;">Net Margin</p></div>
+                <% let netMargin = laba / pendapatan * 100%>
+                <% let margin = netMargin.toFixed(2) %>
+                <div class="margin-image" style="display: flex; align-items: center;"><img src="/image/arrow-up.png"><p style="font-size: 23px; color: #16F275;"><%=margin%>%</p></div>
+                
+                
+               </div>
+            </div>
+            <div class="card">
+                <div class="card-text">
+                    <div class="card-main-text">
+                        <p style="font-size: 20px; font-weight: 600;">Pajak</p>
+                    </div>
+                    <div class="card-total">
+                        <p style="font-size: 30px; text-align: center; font-weight: 400;">Rp<%=pajak.toLocaleString()%></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const clock = document.getElementById("real-time-clock");
+
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const dateStr = now.toDateString();
+            const timeStr = `${hours}:${minutes}:${seconds}`;
+
+            clock.textContent = `${dateStr} - ${timeStr}`;
+        }
+
+        // Panggil fungsi updateClock setiap 1000 ms (1 detik)
+        setInterval(updateClock, 1000);
+
+        // Pertama kali panggil fungsi untuk menginisialisasi tampilan
+        updateClock();
+    </script>
+</body>
+</html>

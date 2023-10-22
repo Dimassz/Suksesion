@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/kasir.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" type="x-icon" href="/image/favicon.png">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"> <a href="/"><img src="/image/v2logo-2.png"></a></div>
+            <div class="username"><p>Welcome <%=userName%></p></div>
+            <div class="list-txt">
+                <a href="/dashboard"><p>Dashboard</p></a>
+              <a href="/inventori"><p>Inventori</p></a>  
+              <a href="/kasir"> <p>Kasir</p></a>  
+              <a href="/transaksi"><p>Transaksi</p></a>  
+            </div>
+            <div class="logout"><p>Log Out</p></div>
+        </div>
+    </header>
+    
+    <div class="box">
+        <div class="menu">
+            <div class="card-menu">
+                    <h1 style="text-align: center;" >Menu</h1>
+
+                    <div class="kategori">
+                        <h3>Makanan</h3>
+                            <div class="card-list">
+
+                                <% results.forEach(barang=>{%>
+                                    <% if(barang.kategori == "Makanan"){ %>
+                                        <div class="card-box" onclick="addToCart('<%=barang.nama%>','<%=barang.harga_jual%>','<%=barang.harga_produksi%>' )">
+                                        <p><%=barang.nama%></p>
+                                        <p><%=barang.harga_jual%></p>
+                                        <p style="display: none;"><%=barang.harga_produksi%></p>
+                                        <button onclick="addToCart('<%=barang.nama%>','<%=barang.harga_jual%>')">tambah</button>
+                                    </div>
+                                  <%  } %>    
+                                <%})%>
+                            </div>
+                    </div>
+                    <div class="kategori">
+                        <h3>Minuman</h3>
+                            <div class="card-list">
+
+                                <% results.forEach(barang=>{%>
+                                    <% if(barang.kategori == "Minuman"){ %>
+                                        <div class="card-box" onclick="addToCart('<%=barang.nama%>','<%=barang.harga_jual%>', '<%=barang.harga_produksi%>')">
+                                        <p><%=barang.nama%></p>
+                                        <p><%=barang.harga_jual%></p>
+                                        <p style="display: none;"><%=barang.harga_produksi%></p>
+                                        <button>tambah</button>
+                                    </div>
+                                  <%  } %>    
+                                <%})%>
+                            </div>
+                    </div>
+
+            </div>
+            <div class="list-menu">
+                <h1 style="text-align: center;">List</h1>
+                    <div class="list-container">
+                        <div class="list-box" id="list-box">
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <p id="total"></p>
+                            <button onclick="openModal()">BAYAR</button>
+                    </div>
+    </div>
+    
+</div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()" style="cursor: pointer;">&times;</span>
+        <div  id="pupuplist">
+        </div>
+        <div class="text-modal">
+                <p id="subtotal" style="font-weight: 500;"></p>
+                <p id="tax" style="font-weight: 500;"></p>
+                <p id="totalHarga" style="font-weight: 500;" ></p>
+                <p id="pembulatan" style="font-weight: 500;"> </p>
+                <p id="totalOrder" style="font-weight: 600;"></p>
+                <div class="payment">
+                    <button onclick="cashButton()" >Cash</button>
+                    <button >Debit</button>
+                    <button>QR</button>
+                    <div class="cash">
+                        <input type="number" id="cash" oninput="cash()" style="display: none;" value="" placeholder="cash">
+                        <p id="change"></p>
+                    </div>
+                    <form method="post" action="/pay">
+                        <input type="number" name="jumlah" value="" id="jumlah" style="display: none;">
+                        <input type="number" name="produksi" value="" id="produksi" style="display: none;">
+                        <input type="number" name="pajak" value="" id="pajak" style="display: none;">
+                        <input type="submit" value="SELESAI">
+                    </form>
+                </div>
+            </div>
+    </div>
+  
+</div>
+
+
+
+<script>
+   let totalOrder = 0;
+   let totalCost= 0;
+let cart = {};
+let afterTax = 0;
+let biayaProduksi =0
+
+document.getElementById('total').innerHTML = "Subtotal = Rp " + totalOrder.toLocaleString('en-US');
+
+function addToCart(itemName, itemPrice, itemCost) {
+    if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+    } else {
+        cart[itemName] = {
+            price: itemPrice,
+            cost : itemCost,
+            quantity: 1
+        };
+    }
+
+    var a = Number(itemPrice);
+    var b =Number(itemCost)
+    totalOrder += a;
+    totalCost += b ;
+    console.log(itemName, itemPrice, totalCost);
+    document.getElementById('total').innerHTML = "Subtotal = Rp " + totalOrder.toLocaleString('en-US');
+    updateOrderList(itemName, itemPrice, itemPrice);
+}
+
+function updateOrderList(itemName, itemPrice) {
+    const orderList = document.getElementById('list-box');
+    orderList.innerHTML = '';
+    for (const item in cart) {
+        if (cart[item].quantity !== 0) {  // Check if quantity is not 0
+            const orderItem = document.createElement('div');
+            orderItem.classList.add('list-item');
+            orderItem.innerHTML = `
+                <p>${item} (x${cart[item].quantity}) <br> @${cart[item].price} </p>
+                <p> Rp ${cart[item].price * cart[item].quantity}</p>
+                <button onclick="removeFromCart('${item}')">-</button>
+            `;
+            orderList.appendChild(orderItem);
+        } else {
+            delete cart[item]; // Remove item with quantity 0 from cart
+        }
+    }
+
+    const popUp = document.getElementById('pupuplist');
+    popUp.innerHTML = '';
+    for (const item in cart) {
+        if (cart[item].quantity !== 0) {  // Check if quantity is not 0
+            const orderItem = document.createElement('div');
+            orderItem.classList.add('listpopup');
+            orderItem.innerHTML = `
+
+                <p>${item} <br>(x${cart[item].quantity})  @${cart[item].price} </p> 
+                <p> Rp ${cart[item].price * cart[item].quantity}</p>
+            `;
+           popUp.appendChild(orderItem);
+        } 
+    }
+}
+
+function updateTotalOrder() {
+    const totalOrderElement = document.getElementById('total');
+    totalOrderElement.textContent = `Subotal = Rp ${totalOrder.toLocaleString('en-US')}`;
+}
+
+function removeFromCart(itemName) {
+    if (cart[itemName] && cart[itemName].quantity > 0) {
+        cart[itemName].quantity -= 1;
+        totalOrder -= cart[itemName].price;
+        totalCost -= cart[itemName].cost;
+        updateTotalOrder();
+        updateOrderList();
+    }
+}
+
+    function openModal(){
+        const modal = document.getElementById('modal');
+        modal.style.display = 'block';
+        document.getElementById('subtotal').innerHTML= `Subtotal = Rp ${totalOrder.toLocaleString('en-US')}`;
+        const tax= totalOrder * 10 /100;
+        const total = totalOrder + tax;
+        const pembulatan = Math.round(total/1000)*1000;
+        const afterPembulatan = pembulatan - total
+
+        document.getElementById('tax').innerHTML=`Tax = Rp ${tax.toLocaleString('en-US')} `;
+        document.getElementById('totalOrder').innerHTML=`Total = Rp ${pembulatan} `;
+        document.getElementById('pembulatan').innerHTML=`Pembulatan = Rp ${afterPembulatan}`;
+        document.getElementById('totalHarga').innerHTML=`Total = Rp ${total.toLocaleString('en-US')}`;
+        afterTax = total
+        console.log(cart)
+        document.getElementById('jumlah').value=pembulatan;
+        document.getElementById('produksi').value=totalCost;
+        document.getElementById('pajak').value=tax;
+        
+    }
+
+    function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+
+
+        function cashButton(){
+            document.getElementById('cash').style.display='block'
+        }
+
+
+        function cash(){
+            const uang = document.getElementById('cash')
+            const totalUang = uang.value;
+            const results = document.getElementById('change');
+            const change =totalUang - afterTax;
+            results.innerHTML=`Kembalian = Rp ${change.toLocaleString('en-US')}`
+
+
+
+        }
+
+
+</script>
+    
+</body>
+</html>

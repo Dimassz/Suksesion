@@ -1,0 +1,224 @@
+@media screen and (max-width:1306px){
+    .left-box .main-text{
+        font-size: 16px;
+    }
+    .list-text{
+        font-size: 16px;
+    }
+    .content-1 .left-box .dot{ 
+        height: 20px;
+        width: 20px;
+}
+
+    
+}
+@media screen and (max-width:1219px){
+    .chart{
+        display: none;
+    }
+    .content-1{
+        width:80%;
+        display: block;
+        height: fit-content;
+        text-align: center;
+    }
+    .left-box .main-text{
+        font-size: 20px;
+    }
+    .content-1-list{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .content-1 .left-box{
+        width: 100%;
+        font-size: 20px;
+    }
+    .text2{
+        font-size: 20px;
+    }
+    .content-2-mainTxt{
+        font-size: 26px;
+    }
+}
+@media screen and (max-width:1219px){
+    .content-1{
+        width:90%;
+    }
+    .container img {
+        width: 280px;
+        height: 100%;
+    }
+    .container .content {
+        height: 80px;
+        font-size: 16px;
+      }
+}
+@media screen and (max-width:1219px){
+
+    .content-2-container{
+        display: block;
+        margin: auto;
+    }
+    .content-2-container .container{
+        margin: auto;
+        margin-bottom: 30px;
+    }
+    .content-2-mainTxt{
+        margin-bottom: 30px;
+    }
+    .content{
+        height: 3300px;
+    }
+}
+@media screen and (max-width:745px){
+    .content-1{
+        width:90%;
+    }
+    .image-1 img{
+        width: 500px;
+    }
+    .content-3-left-box{
+        font-size: 25px;
+    }
+    .content-3-container{
+        font-size: 40px;
+    }
+    .content-3-rigth-box{
+        width: 50%;
+        
+        }
+}
+@media screen and (max-width:652px){
+    .content-1{
+        width:90%;
+    }
+    .image-1 img{
+        width: 400px;
+    }
+    .header img{
+        width: 400px;
+        height: 100%;
+    }
+    .content-3-left-box{
+        font-size: 20px;
+    }
+    .content-3-container{
+        font-size: 30px;
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width:608px){
+    .content-1{
+        width:90%;
+    }
+    .left-box .main-text{
+        font-size: 16px;
+    }
+    .list-text{
+        font-size: 9px;
+    }
+    .content-1 .left-box .dot{ 
+        height: 15px;
+        width: 15px;
+    }
+    .content-1 .left-box .list-text span{
+    margin-right: 9px;
+    }
+    h1{
+        font-size: 28px;
+    }
+    .content-1-list{
+        justify-content: space-between;
+    }
+    .content-4-mainTxt h1{
+        font-size: 40px;
+    }
+    .content-4-mainTxt p{
+        font-size: 19px;
+    }
+    .content-2{
+        margin-bottom: 100px;
+    }
+    .content-3{
+        margin-bottom: 100px;
+    }
+    .content{
+        height: 3100px;
+    }
+}
+
+@media screen and (max-width:491px){
+    .content-1-list{
+        width: 100%;        
+        margin: auto;
+        display: flex;
+        text-align: center;
+        align-self: center;
+       
+    }
+    .content-1 .left-box .dot{ 
+    height: 13px;
+    width: 13px;
+    margin: 0px;
+    }
+    .content-1 .left-box .list-text{
+        display: flex;
+        margin-bottom: 10px;
+        width: fit-content;
+        margin-left: 30px;
+    }
+    .list-text p{
+        font-size: 9px;
+    }
+    .content{
+        height: 3200px;
+    }
+}
+@media screen and (max-width:430px){
+    .header img{
+        width: 50%;
+        height: 50px;
+    }
+    .header{
+        height: 80px;
+    }
+    .text-header h1{
+        font-size: 20px;
+    }
+    .text-header p{
+        font-size: 13px;
+    }
+    #comingsoonTxt{
+        font-size: 15px;
+    }
+    .comingsoonTxt{
+        background-color: #77A649;
+        width: 157px;
+        height: 40px;
+    }
+    .content-1{
+        margin-top: 20px;
+    }
+    .main-text p{
+        font-size: 14px;
+    }
+    .image-1{
+        margin-top: 30px;
+    }
+    .image-1 img{
+        width: 300px;
+    }
+    .text2{
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .content-2 p{
+        font-size: 20px;
+    }
+    .content-2{
+        margin-top: 50px;
+    }
+    .content{
+        height: 2800px;
+    }
+}

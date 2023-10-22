@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/transaksi.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" type="x-icon" href="/image/favicon.png">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo"><a href="/"><img src="/image/v2logo-2.png"></a></div>
+            <div class="username"><p>Welcome <%=userName%></p></div>
+            <div class="list-txt">
+                <a href="/dashboard"><p>Dashboard</p></a>
+              <a href="/inventori"><p>Inventori</p></a>  
+              <a href="/kasir"> <p>Kasir</p></a>  
+              <a href="/transaksi"><p>Transaksi</p></a>  
+            </div>
+            <div class="logout"><p>Log Out</p></div>
+        </div>
+    </header>
+
+    <h2>Laporan Pemasukan</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tanggal Penjualan</th>
+                <th>No Transaksi</th>
+                <th>Kategori</th>
+                <th>Biaya Produksi</th>
+                <th>Jumlah Penjualan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% results.forEach(list => { %>
+            <tr>
+                
+                <td><input value="<%= list.tanggal %>" readonly type="text" style="border: none; outline: none; background-color: transparent; font-size: 16px;;"></td>
+                <td><%= list.no_transaksi %></td>
+                <td><%= list.kategori %></td>
+                <td> Rp<%= list.biaya_produksi.toLocaleString() %></td>
+                <td>Rp<%= list.jumlah.toLocaleString() %></td>
+            </tr>
+            <% }) %>
+            <tr class="total-row">
+                <td colspan="3">Total Keseluruhan</td>
+                <% var total = 0; %>
+                <% results.forEach(list => { %>
+                    <% total += list.jumlah %>
+                <% }) %>
+                <% var produksi = 0; %>
+                <% results.forEach(list => { %>
+                    <% produksi += list.biaya_produksi %>
+                <% }) %>
+                <td style="background-color: #ff9b9b; color: #000;">Rp <%= produksi.toLocaleString() %></td>
+                <td style="background-color: #d5f7e7; color: #000;">Rp <%= total.toLocaleString() %></td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    <div class="add-form">
+        <form action="/incomelist" method="post">
+            <input type="text" name="keterangan" id="keterangan" placeholder="Keterangan" value="">
+            <input type="number" name="total" id="total" placeholder="Total">
+            <button>Tambah Data</button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const tanggalFilter = document.getElementById("tanggalFilter");
+          const rows = document.querySelectorAll("tbody tr");
+        
+          tanggalFilter.addEventListener("change", function() {
+            const tanggalFilterValue = tanggalFilter.value;
+        
+            rows.forEach(row => {
+              const tanggalCell = row.querySelector("td:first-child");
+              if (tanggalCell) {
+                if (tanggalFilterValue === "" || tanggalCell.textContent === tanggalFilterValue) {
+                  row.style.display = "table-row";
+                } else {
+                  row.style.display = "none";
+                }
+              }
+            });
+          });
+        });
+        </script>
+
+</body>
+</html>

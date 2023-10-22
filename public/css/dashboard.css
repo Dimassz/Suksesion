@@ -1,0 +1,98 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    width: 100%;
+    height: 65px;
+    background-color: #FFFDFA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #1A2126;
+}
+.header-content{
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.logo img{
+    width: 50px;
+    height: 100%;
+}
+.list-txt{
+    display: flex;
+    width: 60%;
+}
+.list-txt p{
+    margin-right: 20px;
+    font-weight: 600;
+    color: #1A2126;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.content{
+    margin-top: 30px;
+}
+.first-container{
+   width: 90%;
+   margin:auto;
+   color: #0D0D0D;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   height: 500px;
+}
+.card-container{
+    width: 100%;
+    display: flex;
+   flex-flow: wrap;
+   justify-content: space-evenly;
+
+}
+.date p{
+   padding-top: 20px;
+   padding-left: 20px;
+   font-size: 26px;
+   color: #2f2f2f;
+}
+.card{
+    width: 23%;
+    height: 100px;
+    border-radius: 5px;
+    border: 2px solid #1A2126;
+    margin-top: 20px;
+}
+
+.card-main-text{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+
+}
+.persen{
+    display: flex;
+    align-items: center;
+}
+.persen img{
+    width:35px;
+    height: 35px;
+}
+
+.card-margin{
+    width: 280px;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 20px;
+}
+.margin-image img{
+    width:50px;
+    height: 50px;
+}

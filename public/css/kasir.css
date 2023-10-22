@@ -1,0 +1,199 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    width: 100%;
+    height: 65px;
+    background-color: #FFFDFA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #1A2126;
+    position: fixed;
+    z-index: 999;
+}
+.header-content{
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.logo img{
+    width: 50px;
+    height: 100%;
+}
+.list-txt{
+    display: flex;
+    width: 60%;
+}
+.list-txt p{
+    margin-right: 20px;
+    font-weight: 600;
+    color: #1A2126;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+/* ----------------- */
+.box{
+    width: 100%;
+    padding-top: 65px;
+}
+.menu{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+.card-menu{
+    width: 70%;
+    height:fit-content;
+}
+.list-menu{
+    width: 30%;
+    height: 100vh;
+    background-color: #f2f2f2;
+    right: 0;
+    border-left: 2px solid #1A2126;
+    position: relative;
+}
+.checkout{
+    width: 100%;
+    height: 80px;
+    background-color: #3CA6A6;
+    position: fixed;
+    bottom:0;
+}
+.checkout p{
+    margin-left: 10px;
+    font-size: larger;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #f2f2f2;
+}
+
+.checkout button{
+    margin-left: 10px;
+    padding: 5px 12px 5px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+h3{
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+.card-list{
+    width:  95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.card-box p{
+    margin-bottom: 4px;
+}
+.card-box{
+    width:max-content;
+    height: fit-content;
+    padding: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.card-box button{
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.card-box:active{
+    background-color: #a5a5a5;
+}
+.list-box{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 90px;
+}
+.list-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.list-item button{
+    padding: 5px 10px 5px 10px;
+}
+
+.pop-up{
+    width: 400px;
+    border: 2px solid black;
+    position: absolute;
+    background-color: #f2f2f2;
+    top: 0;
+    display: none;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.listpopup{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    overflow: auto;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    max-height: 80%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; 
+}
+
+.text-modal{
+    margin-top: 20px;
+}
+.payment{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.payment button{
+    margin-right: 10px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#cash{
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 10px;
+    border-radius: 5px;
+}

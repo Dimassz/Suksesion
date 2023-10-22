@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUKSESION | Mempermudah Analisis Keuangan Usaha</title>
+    <link rel="stylesheet"  href="/css/landingpage.css"> 
+    <link rel="stylesheet" href="/css/reslandingPage.css"> 
+    <link rel="shortcut icon" type="x-icon" href="/image/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-img"><img src="/image/v2logo-1.png"></div>
+        <div class="header-login-register">
+            <a href="/login"><p>LOGIN</p></a>
+            <a href="/register"><p>REGISTER</p></a>
+            
+    </div>
+
+        
+    </div>
+    <div class="content">
+
+        <div class="text-header">
+            <h1>ANALISIS KEUANGAN ADALAH ALAT PENTING UNTUK MEMAHAMI KESEHATAN KEUANGAN BISNIS.</h1>
+            <p>aplikasi serbaguna dengan fitur lengkap yang dapat disesuaikan untuk memenuhi kebutuhan setiap jenis usaha</p>            
+        </div>
+        <div class="comingsoonTxt"><a id="comingsoonTxt" href="#form">COMING SOON</a></div>
+
+        <div class="content-1">
+            <div class="left-box">
+                <div class="main-text">
+                <p>Dengan <span style="color: #0742F2; font-weight: bolder;">SUKSESION</span>, bisnis Anda dapat mengakses layanan analisis keuangan yang canggih dan pencatatan transaksi yang terpercaya untuk berbagai jenis usaha.</p>
+            </div>
+            <div class="content-1-list">
+                <div class="list-text">
+                    <span class="dot"></span>
+                    <p>Inventori</p>
+                </div>
+                <div class="list-text">
+                    <span class="dot"></span>
+                    <p>Analisa Keuangan</p>
+                </div>
+                <div class="list-text">
+                    <span class="dot"></span>
+                    <p>Sistem Kasir</p>
+                </div>
+                <div class="list-text">
+                    <span class="dot"></span>
+                    <p>Daftar Transaksi</p>
+                </div>
+            </div>
+            </div>
+            <div class="rigth-box">
+                <div class="chart">
+                    <canvas id="canvas"></canvas>
+                  </div>
+            </div>
+        </div>
+
+        <div class="image-1">
+            <img src="image/asset-1.png" >
+        </div>
+
+        <div class="text2">
+            <p>Tidak perlu lagi repot mencatat secara manual, platform ini dapat mengotomatisasi banyak proses penghitungan, pelacakan keuangan untuk menghemat waktu dan upaya Anda, dan membuat laporan keuangan dengan mudah.</p>
+        </div>
+
+
+        <div class="content-2">
+            <div class="content-2-mainTxt"><p>SEMUA KEBUTUHAN HANYA DALAM <span>SATU</span> APLIKASI</p></div>
+            <div class="content-2-container">
+            <div class="container">
+                <img src="image/asset-2.png" alt="Notebook" >
+                <div class="content">
+                  <p>Dapat digunakan sebagai sistem kasir</p>
+                </div>
+              </div>
+              <div class="container">
+                <img src="/image/asset-3.png" alt="Notebook" >
+                <div class="content">
+                  <p>Catat semua inventori bisnis Anda dengan mudah</p>
+                </div>
+              </div>
+              <div class="container">
+                <img src="/image/asset-4.png" alt="Notebook" >
+                <div class="content">
+                  <p>Merekam semua kegiatan transaksi dengan otomatis</p>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="content-3">
+            <div class="content-3-left-box"><p>Cocok bagi anda yang memiliki bisnis atau baru ingin memulai bisnis.</p></div>
+            <div class="content-3-rigth-box">
+                <div class="content-3-container">
+                    <div class="inner">
+                      <div id="one" class="item first">F&B</div><div id="two" class="item second">Retail Store</div><div id="three" class="item third">Penyedia Jasa</div><div id="four" class="item fourth">UMKM</div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="content-4">
+            <div class="content-4-mainTxt">
+                <h1>COMING SOON</h1>
+                <p>Segera daftarkan email Anda untuk mendapatkan penwaran menarik</p>
+            </div>
+            <div class="content-4-input" id="form">
+                <form action="#" id="form">
+                    <input type="email" id="input" placeholder="email address" maxlength="35">
+                    <button type="submit" id="button" value="Send" >SUBMIT</button>
+                </form>
+                <p id="emptyinput" style="color: rgb(255, 71, 71); margin-top: 10px;"></p>
+            </div>
+        </div>
+
+        <footer style="opacity: 0.8; padding-bottom: 30px;">
+            <p>contact us</p>
+            <p>cs@suksesion.site</p>
+        </footer>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="myscripts.js"></script>
+    <script>
+        var chartColors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(231,233,237)'
+  };
+  
+  var randomScalingFactor = function() {
+    return (Math.random() > 0.5 ? 2.0 : 1.0) * Math.round(Math.random() * 100);
+  }
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var config = {
+    type: 'line',
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [{
+        label: "My First dataset",
+        backgroundColor: chartColors.red,
+        borderColor: chartColors.red,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor()
+        ],
+        fill: false,
+      }, {
+        label: "My Second dataset",
+        fill: false,
+        backgroundColor: chartColors.blue,
+        borderColor: chartColors.blue,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor()
+        ],
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      title: {
+        fontSize: 16,
+        fontStyle: '100',
+        fontColor: '#333333',
+        padding: 10,
+        display: true
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false,
+          },
+          gridLines: {
+            display: true,
+            zeroLineColor: 'blue',
+            lineWidth: 1,
+            color:'black',
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: false
+          },
+          gridLines: {
+            display: true,
+            lineWidth: 1,
+            color:'black'
+          }
+        }]
+      }
+    }
+  };
+  
+  
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myLine = new Chart(ctx, config);
+
+  const email = document.getElementById('input');
+  const submit = document.getElementById('form');
+
+
+  submit.addEventListener('submit',(e)=>{
+
+    if(email.value == ""){
+      document.getElementById('emptyinput').innerHTML="input kosong"
+      console.log("error")
+    }else{
+      e.preventDefault();
+    let ebody = `${email.value}`;
+
+    Email.send({
+        SecureToken : "fc9f83be-9f08-4eb6-ba0a-1016435b904e", //add your token here
+        To : 'info@suksesion.site', 
+        From : "info@suksesion.site",
+        Subject : "Website Form",
+        Body :ebody
+    }).then(
+      location.replace("https://www.submitted.suksesion.site/"),
+      console.log('masuk')
+    );
+    }
+   
+});
+
+// documet.getElementById('input').addEventListener('keycup',(e)=>{
+//   e.preventDefault();
+//   let ebody = `${email.value}`;
+
+//   Email.send({
+//       SecureToken : "fc9f83be-9f08-4eb6-ba0a-1016435b904e", //add your token here
+//       To : 'info@suksesion.site', 
+//       From : "info@suksesion.site",
+//       Subject : "Website Form",
+//       Body :ebody
+//   }).then(
+//     location.replace("https://www.submitted.suksesion.site/"),
+//     console.log("masuk")
+//   );
+// });
+    </script>
+</body>
+</html>
