@@ -17,10 +17,10 @@ app.use(
 
 
   var con = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "Dimass123",
-    database: "suksesionDb"
+    host: "sql12.freemysqlhosting.net",
+    user: "sql12655495",
+    password: "RaI1AANHfs",
+    database: "sql12655495"
   });
 
   con.connect(function(err) {
