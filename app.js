@@ -2,7 +2,6 @@ const express = require('express')
 const app = express();
 const mysql = require('mysql');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
 const port = 3000;
 
 app.use(express.static('public'));
@@ -57,74 +56,15 @@ app.use(
     res.render("register.ejs")
   })
 
-  app.post('/register', (req, res)=>{
-    //--------TANGGAL-----------//
-    const currentDate = new Date()
-    const day = String(currentDate.getDate()).padStart(2, '0')
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0')
-    const year = currentDate.getFullYear()
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    const tanggal = day +" "+ month +" "+ year
-    //-------------------//
-    const username= req.body.username;
-    const email= req.body.email;
-    const password= req.body.password;
-    const register_date= tanggal;
-    const unique_number= Math.floor(Math.random() * 101).toString() + Math.floor(Math.random() * 101).toString() + Math.floor(Math.random() * 101).toString() ;
-    const user_number= Math.floor(Math.random() * 101).toString() + Math.floor(Math.random() * 101).toString() + Math.floor(Math.random() * 101).toString() ;
-
-        bcrypt.hash(password, 10, (error, hash)=>{
-          console.log(hash)
-          con.query("INSERT INTO users(username, email, password, register_date, unique_number, user_number) VALUES(?, ?, ?, ?, ?,?)", [username, email, hash, register_date, unique_number, user_number], (err, results)=>{
-                console.log(err)
-                console.log(results)
-                req.session.userId=results.insertId
-                req.session.userName=username
-                req.session.user_number=user_number
-                res.redirect('/dashboard')
-            })
-        })  
-
-  } )
+ 
 
   app.get('/login', (req, res)=>{
     res.render('login.ejs')
   })
 
 
-  app.post('/login', (req, res)=>{
-    const username = req.body.username;
-    const password = req.body.password;
+  
 
-    con.query(
-        "SELECT * FROM users where username=?", [username], (err, results)=>{
-            if(results.length > 0){
-              console.log(results)
-              const plain=req.body.password
-              const hash=results[0].password
-
-              bcrypt.compare(plain, hash, (error, isEqual)=>{
-                if(isEqual){
-                  console.log("login sukses")
-                  req.session.userName = results[0].username
-                  req.session.userId= results[0].ID
-                  req.session.user_number=results[0].user_number
-                  res.redirect('/dashboard')
-                }else{
-                  console.log('password salah')
-                  res.redirect('/login')
-                }
-              })
-
-            }else{
-                console.log("id tidak ditemukan")
-                res.redirect('/login')
-            }
-        }
-    )
-
-  })
 
   app.get('/dashboard', (req, res)=>{
     console.log("User Number = " + req.session.user_number)
