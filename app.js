@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const mysql = require('mysql');
 const session = require('express-session');
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
@@ -225,4 +225,6 @@ app.use(
   });
 
 
-  app.listen(port, ()=>console.log(`connection to port ${port}`));
+  app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
